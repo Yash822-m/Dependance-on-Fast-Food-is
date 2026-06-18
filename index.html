@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Dependence On Fast Food</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    margin:0;
+}
+
+
+header{
+    background:#ff5722;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+
+.container{
+    width:80%;
+    margin:auto;
+    padding:20px;
+}
+
+
+.search{
+    text-align:center;
+    margin:25px;
+}
+
+
+input{
+    padding:12px;
+    width:250px;
+    border-radius:5px;
+    border:1px solid gray;
+}
+
+
+button{
+    padding:12px 20px;
+    background:#ff5722;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+
+button:hover{
+    background:#e64a19;
+}
+
+
+.card{
+    background:white;
+    padding:20px;
+    margin-top:20px;
+    border-radius:10px;
+    box-shadow:0px 0px 10px #aaa;
+}
+
+
+.green{
+    color:green;
+    font-weight:bold;
+}
+
+
+.yellow{
+    color:orange;
+    font-weight:bold;
+}
+
+
+.red{
+    color:red;
+    font-weight:bold;
+}
+
+
+footer{
+    background:#333;
+    color:white;
+    text-align:center;
+    padding:10px;
+    margin-top:20px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>🍔 Dependence On Fast Food</h1>
+
+<p>Know your food before you eat</p>
+
+</header>
+
+
+
+<div class="container">
+
+
+
+<div class="search">
+
+<input id="foodInput" 
+placeholder="Enter food name">
+
+
+<button onclick="searchFood()">
+Search
+</button>
+
+
+</div>
+
+
+
+<div id="result"></div>
+
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+
+const foods = {
+
+
+
+burger:{
+category:"Fast Food",
+ingredients:"Bun, Patty, Cheese, Sauce",
+calories:"295 kcal",
+fat:"12g",
+sugar:"5g",
+protein:"17g",
+rating:"Red - Limit Frequently",
+alternative:"Healthy sandwich"
+},
+
+
+
+pizza:{
+category:"Fast Food",
+ingredients:"Flour, Cheese, Tomato Sauce, Toppings",
+calories:"285 kcal",
+fat:"10g",
+sugar:"4g",
+protein:"12g",
+rating:"Yellow - Eat Occasionally",
+alternative:"Whole wheat vegetable pizza"
+},
+
+
+
+shawarma:{
+category:"Fast Food",
+ingredients:"Bread, Chicken, Vegetables, Sauce",
+calories:"400 kcal",
+fat:"15g",
+sugar:"3g",
+protein:"25g",
+rating:"Yellow - Moderate Consumption",
+alternative:"Grilled chicken wrap"
+},
+
+
+
+softdrink:{
+category:"Fast Food",
+ingredients:"Carbonated Water, Sugar, Flavour",
+calories:"150 kcal",
+fat:"0g",
+sugar:"High",
+protein:"0g",
+rating:"Red - Avoid Frequently",
+alternative:"Fresh juice or water"
+},
+
+
+
+friedchicken:{
+category:"Fast Food",
+ingredients:"Chicken, Oil, Spices",
+calories:"350 kcal",
+fat:"20g",
+sugar:"Low",
+protein:"25g",
+rating:"Red - Limit Frequently",
+alternative:"Grilled chicken"
+},
+
+
+
+
+fruits:{
+category:"Healthy Food",
+ingredients:"Vitamins, Minerals, Fiber",
+calories:"60-100 kcal",
+fat:"Low",
+sugar:"Natural Sugar",
+protein:"1g",
+rating:"Green - Healthy Choice",
+alternative:"Continue eating fresh fruits"
+},
+
+
+
+
+meals:{
+category:"Healthy Food",
+ingredients:"Rice, Vegetables, Protein",
+calories:"300-600 kcal",
+fat:"Moderate",
+sugar:"Low",
+protein:"Good",
+rating:"Green - Balanced Meal",
+alternative:"Homemade balanced meals"
+},
+
+
+
+
+
+dryfruits:{
+category:"Healthy Food",
+ingredients:"Almonds, Cashews, Nuts and Seeds",
+calories:"High Energy",
+fat:"Healthy Fat",
+sugar:"Low",
+protein:"High",
+rating:"Green - Nutritious Choice",
+alternative:"Eat small portions"
+},
+
+
+
+
+
+homemadefood:{
+category:"Healthy Food",
+ingredients:"Fresh ingredients prepared at home",
+calories:"Depends on meal",
+fat:"Controlled",
+sugar:"Controlled",
+protein:"Good",
+rating:"Green - Safer Option",
+alternative:"Prefer homemade foods"
+}
+
+
+
+};
+
+
+
+
+
+
+function searchFood(){
+
+
+let name =
+document.getElementById("foodInput").value.toLowerCase();
+
+
+
+let result =
+document.getElementById("result");
+
+
+
+if(foods[name]){
+
+
+let f = foods[name];
+
+let color="yellow";
+
+
+if(f.rating.includes("Green"))
+{
+color="green";
+}
+
+
+if(f.rating.includes("Red"))
+{
+color="red";
+}
+
+
+
+
+result.innerHTML = `
+
+
+<div class="card">
+
+
+<h2>${name.toUpperCase()}</h2>
+
+
+<p><b>Category:</b> ${f.category}</p>
+
+
+<p><b>Ingredients:</b> ${f.ingredients}</p>
+
+
+<p><b>Calories:</b> ${f.calories}</p>
+
+
+<p><b>Fat:</b> ${f.fat}</p>
+
+
+<p><b>Sugar:</b> ${f.sugar}</p>
+
+
+<p><b>Protein:</b> ${f.protein}</p>
+
+
+
+<p class="${color}">
+<b>Health Rating:</b>
+${f.rating}
+</p>
+
+
+
+<p>
+<b>Better Option:</b>
+${f.alternative}
+</p>
+
+
+
+</div>
+
+
+
+`;
+
+
+
+}
+
+else{
+
+
+result.innerHTML = `
+
+
+<div class="card">
+
+<h3>Food not found</h3>
+
+<p>
+Try:
+burger, pizza, shawarma, softdrink,
+friedchicken, fruits, meals, dryfruits, homemadefood
+</p>
+
+</div>
+
+
+`;
+
+}
+
+
+
+}
+
+
+
+</script>
+
+
+
+
+<footer>
+
+© 2026 Dependence On Fast Food Project
+
+</footer>
+
+
+
+</body>
+
+</html>
